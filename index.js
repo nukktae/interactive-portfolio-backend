@@ -11,7 +11,8 @@ const corsOptions = {
     'https://www.anubilegdemberel.com',
     'https://interactive-portfolio-git-main-anu-bilegdemberels-projects.vercel.app',
     'https://anu-portfolio-backend.vercel.app',
-    'https://anu-portfolio-frontend.vercel.app'
+    'https://anu-portfolio-frontend.vercel.app',
+    'https://anu-portfolio-backend-iequx7uxi-anu-bilegdemberels-projects.vercel.app'
   ],
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
