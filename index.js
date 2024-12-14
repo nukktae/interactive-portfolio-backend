@@ -7,13 +7,13 @@ const app = express();
 const corsOptions = {
   origin: 'https://www.anubilegdemberel.com',
   methods: ['GET', 'POST', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'Accept']
+  allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
+  credentials: true,
+  optionsSuccessStatus: 204
 };
 
 app.use(cors(corsOptions));
 app.use(express.json());
-
-app.options('/chat', cors(corsOptions));
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
