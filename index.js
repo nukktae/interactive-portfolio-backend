@@ -8,9 +8,11 @@ const corsOptions = {
   origin: [
     'http://localhost:3000',
     'https://www.anubilegdemberel.com',
-    'https://interactive-portfolio-git-main-anu-bilegdemberels-projects.vercel.app'
+    'https://interactive-portfolio-git-main-anu-bilegdemberels-projects.vercel.app',
+    'https://anu-portfolio-backend.vercel.app'
   ],
-  methods: ['GET', 'POST'],
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 };
 

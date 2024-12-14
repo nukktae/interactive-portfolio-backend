@@ -9,17 +9,20 @@
   "routes": [
     {
       "src": "/chat",
+      "methods": ["OPTIONS"],
+      "dest": "/index.js"
+    },
+    {
+      "src": "/chat",
       "methods": ["POST"],
-      "headers": {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type"
-      },
-      "dest": "index.js"
+      "dest": "/index.js"
     },
     {
       "src": "/(.*)",
-      "dest": "index.js"
+      "dest": "/index.js"
     }
-  ]
+  ],
+  "env": {
+    "OPENAI_API_KEY": "@openai_api_key"
+  }
 } 
