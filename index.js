@@ -9,15 +9,21 @@ const corsOptions = {
     'http://localhost:3000',
     'https://www.anubilegdemberel.com',
     'https://interactive-portfolio-git-main-anu-bilegdemberels-projects.vercel.app',
-    'https://anu-portfolio-backend.vercel.app'
+    'https://anu-portfolio-backend.vercel.app',
+    'https://anu-portfolio-frontend.vercel.app'
   ],
   methods: ['GET', 'POST', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
+  allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
+  credentials: false
 };
 
 app.use(cors(corsOptions));
 app.use(express.json());
+
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.path}`, req.body);
+  next();
+});
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -55,6 +61,8 @@ app.get('/', (req, res) => {
 app.post('/chat', async (req, res) => {
   try {
     const { message } = req.body;
+    console.log('Received message:', message);
+    
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: [
@@ -65,9 +73,10 @@ app.post('/chat', async (req, res) => {
       temperature: 0.3,
     });
     
+    console.log('OpenAI response:', completion.choices[0].message);
     res.json({ reply: completion.choices[0].message.content.trim() });
   } catch (error) {
-    console.error('Error:', error);
+    console.error('Chat error:', error);
     res.status(500).json({ error: error.message });
   }
 });
