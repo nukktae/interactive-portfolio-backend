@@ -5,7 +5,7 @@ require('dotenv').config();
 
 const app = express();
 const corsOptions = {
-  origin: ['https://www.anubilegdemberel.com', 'http://localhost:3000'],
+  origin: 'https://www.anubilegdemberel.com',
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
   credentials: false,
@@ -14,8 +14,6 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json());
-
-app.options('*', cors(corsOptions));
 
 app.use((req, res, next) => {
   console.log('Request:', {
