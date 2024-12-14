@@ -7,6 +7,7 @@ const app = express();
 const corsOptions = {
   origin: [
     'http://localhost:3000',
+    'http://www.anubilegdemberel.com',
     'https://www.anubilegdemberel.com',
     'https://interactive-portfolio-git-main-anu-bilegdemberels-projects.vercel.app',
     'https://anu-portfolio-backend.vercel.app',
