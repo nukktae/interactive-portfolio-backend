@@ -5,15 +5,17 @@ require('dotenv').config();
 
 const app = express();
 const corsOptions = {
-  origin: 'https://www.anubilegdemberel.com',
-  methods: ['GET', 'POST', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
+  origin: true,
   credentials: true,
-  optionsSuccessStatus: 204
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Accept'],
+  optionsSuccessStatus: 200
 };
 
 app.use(cors(corsOptions));
 app.use(express.json());
+
+app.options('*', cors(corsOptions));
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,

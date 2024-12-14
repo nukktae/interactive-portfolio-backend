@@ -10,11 +10,10 @@
     {
       "src": "/(.*)",
       "dest": "/index.js",
-      "methods": ["GET", "POST", "OPTIONS"],
       "headers": {
-        "Access-Control-Allow-Origin": "https://www.anubilegdemberel.com",
+        "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization, Accept",
+        "Access-Control-Allow-Headers": "Content-Type, Accept",
         "Access-Control-Allow-Credentials": "true"
       }
     }
