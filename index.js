@@ -5,11 +5,10 @@ require('dotenv').config();
 
 const app = express();
 const corsOptions = {
-  origin: true,
+  origin: ['https://www.anubilegdemberel.com', 'http://localhost:3000'],
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
-  credentials: false,
-  maxAge: 86400
+  credentials: false
 };
 
 app.use(cors(corsOptions));
