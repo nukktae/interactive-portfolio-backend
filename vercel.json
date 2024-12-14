@@ -10,13 +10,12 @@
     {
       "src": "/chat",
       "methods": ["POST"],
-      "dest": "/index.js",
+      "dest": "index.js",
       "headers": {
         "Access-Control-Allow-Origin": "https://www.anubilegdemberel.com",
         "Access-Control-Allow-Methods": "POST, OPTIONS",
         "Access-Control-Allow-Headers": "Content-Type, Authorization, Accept"
-      },
-      "continue": true
+      }
     },
     {
       "src": "/chat",
@@ -28,6 +27,10 @@
         "Access-Control-Allow-Headers": "Content-Type, Authorization, Accept",
         "Access-Control-Max-Age": "86400"
       }
+    },
+    {
+      "src": "/(.*)",
+      "dest": "index.js"
     }
   ]
 } 
