@@ -9,18 +9,7 @@
   "routes": [
     {
       "src": "/chat",
-      "methods": ["POST"],
-      "dest": "index.js",
-      "headers": {
-        "Access-Control-Allow-Origin": "https://www.anubilegdemberel.com",
-        "Access-Control-Allow-Methods": "POST, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization, Accept"
-      }
-    },
-    {
-      "src": "/chat",
       "methods": ["OPTIONS"],
-      "status": 204,
       "headers": {
         "Access-Control-Allow-Origin": "https://www.anubilegdemberel.com",
         "Access-Control-Allow-Methods": "POST, OPTIONS",
@@ -29,8 +18,18 @@
       }
     },
     {
+      "src": "/chat",
+      "methods": ["POST"],
+      "dest": "/index.js",
+      "headers": {
+        "Access-Control-Allow-Origin": "https://www.anubilegdemberel.com",
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, Authorization, Accept"
+      }
+    },
+    {
       "src": "/(.*)",
-      "dest": "index.js"
+      "dest": "/index.js"
     }
   ]
 } 
