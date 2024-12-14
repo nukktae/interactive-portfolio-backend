@@ -6,6 +6,17 @@
       "use": "@vercel/node"
     }
   ],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Credentials", "value": "false" },
+        { "key": "Access-Control-Allow-Origin", "value": "https://www.anubilegdemberel.com" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET,OPTIONS,POST" },
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type, Authorization, Accept" }
+      ]
+    }
+  ],
   "routes": [
     {
       "src": "/(.*)",

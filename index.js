@@ -8,7 +8,8 @@ const corsOptions = {
   origin: ['https://www.anubilegdemberel.com', 'http://localhost:3000'],
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
-  credentials: false
+  credentials: false,
+  maxAge: 86400
 };
 
 app.use(cors(corsOptions));
