@@ -5,25 +5,29 @@ require('dotenv').config();
 
 const app = express();
 const corsOptions = {
-  origin: [
-    'http://localhost:3000',
-    'http://www.anubilegdemberel.com',
-    'https://www.anubilegdemberel.com',
-    'https://interactive-portfolio-git-main-anu-bilegdemberels-projects.vercel.app',
-    'https://anu-portfolio-backend.vercel.app',
-    'https://anu-portfolio-frontend.vercel.app',
-    'https://anu-portfolio-backend-iequx7uxi-anu-bilegdemberels-projects.vercel.app'
-  ],
+  origin: true,
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
-  credentials: false
+  credentials: false,
+  maxAge: 86400
 };
 
 app.use(cors(corsOptions));
 app.use(express.json());
 
+app.options('*', cors(corsOptions));
+
 app.use((req, res, next) => {
-  console.log(`${req.method} ${req.path}`, req.body);
+  console.log('Request:', {
+    method: req.method,
+    path: req.path,
+    headers: req.headers,
+    body: req.body
+  });
+  
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Accept');
   next();
 });
 
