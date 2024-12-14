@@ -8,6 +8,16 @@
   ],
   "routes": [
     {
+      "src": "/chat",
+      "methods": ["POST"],
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type"
+      },
+      "dest": "index.js"
+    },
+    {
       "src": "/(.*)",
       "dest": "index.js"
     }

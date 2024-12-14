@@ -4,7 +4,17 @@ const OpenAI = require('openai');
 require('dotenv').config();
 
 const app = express();
-app.use(cors());
+const corsOptions = {
+  origin: [
+    'http://localhost:3000',
+    'https://www.anubilegdemberel.com',
+    'https://interactive-portfolio-git-main-anu-bilegdemberels-projects.vercel.app'
+  ],
+  methods: ['GET', 'POST'],
+  credentials: true
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 const openai = new OpenAI({
@@ -27,6 +37,14 @@ Guidelines for responses:
 - Never pretend to have experience that isn't listed in the resume data
 
 Remember: Only discuss experiences and skills that are explicitly listed in the resume data.`;
+
+app.use((err, req, res, next) => {
+  console.error('Error:', err);
+  res.status(500).json({ 
+    error: err.message || 'Internal Server Error',
+    stack: process.env.NODE_ENV === 'development' ? err.stack : undefined
+  });
+});
 
 app.get('/', (req, res) => {
   res.json({ message: 'Portfolio API is running' });
