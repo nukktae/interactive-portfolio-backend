@@ -6,27 +6,17 @@
       "use": "@vercel/node"
     }
   ],
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        { "key": "Access-Control-Allow-Credentials", "value": "false" },
-        { "key": "Access-Control-Allow-Origin", "value": "https://www.anubilegdemberel.com" },
-        { "key": "Access-Control-Allow-Methods", "value": "GET,OPTIONS,POST" },
-        { "key": "Access-Control-Allow-Headers", "value": "Content-Type, Authorization, Accept" },
-        { "key": "Access-Control-Max-Age", "value": "86400" }
-      ]
-    }
-  ],
   "routes": [
     {
-      "src": "/chat",
-      "methods": ["OPTIONS"],
-      "dest": "/index.js"
-    },
-    {
       "src": "/(.*)",
-      "dest": "/index.js"
+      "dest": "/index.js",
+      "headers": {
+        "Access-Control-Allow-Credentials": "false",
+        "Access-Control-Allow-Origin": "https://www.anubilegdemberel.com",
+        "Access-Control-Allow-Methods": "GET,OPTIONS,POST",
+        "Access-Control-Allow-Headers": "Content-Type, Authorization, Accept",
+        "Access-Control-Max-Age": "86400"
+      }
     }
   ]
 } 
