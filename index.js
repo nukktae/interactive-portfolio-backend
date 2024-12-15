@@ -4,18 +4,22 @@ const OpenAI = require('openai');
 require('dotenv').config();
 
 const app = express();
+
 const corsOptions = {
-  origin: true,
-  credentials: true,
+  origin: ['http://localhost:3000', 'https://www.anubilegdemberel.com'],
   methods: ['GET', 'POST', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Accept'],
-  optionsSuccessStatus: 200
+  allowedHeaders: ['Content-Type'],
+  credentials: false,
+  optionsSuccessStatus: 204
 };
 
+// Apply CORS middleware first
 app.use(cors(corsOptions));
-app.use(express.json());
 
+// Then add preflight handler
 app.options('*', cors(corsOptions));
+
+app.use(express.json());
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -38,11 +42,24 @@ Guidelines for responses:
 
 Remember: Only discuss experiences and skills that are explicitly listed in the resume data.`;
 
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.path}`, {
+    headers: req.headers,
+    body: req.body
+  });
+  next();
+});
+
 app.use((err, req, res, next) => {
-  console.error('Error:', err);
+  console.error('Detailed error:', {
+    message: err.message,
+    stack: err.stack,
+    headers: req.headers
+  });
+  
   res.status(500).json({ 
     error: err.message || 'Internal Server Error',
-    stack: process.env.NODE_ENV === 'development' ? err.stack : undefined
+    details: process.env.NODE_ENV === 'development' ? err.stack : undefined
   });
 });
 
