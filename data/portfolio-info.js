@@ -21,7 +21,7 @@ const PORTFOLIO_INFO = {
       duration: "Sep 2024 - Dec 2024",
       location: "Irvine, CA",
       highlights: [
-        "Developed an IoT-based plant care system with iOS app integration",
+        "Developed Rootin, an IoT-based plant care system with iOS app integration",
         "Integrated Firebase Cloud Messaging (FCM) improving notifications by 30%",
         "Connected Raspberry Pi with soil moisture sensors, achieving 90% user satisfaction",
         "Built reusable Flutter widgets with multilingual support",
