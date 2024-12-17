@@ -30,11 +30,11 @@ const PORTFOLIO_INFO = {
     },
     {
       company: "PBL Program - Kookmin University",
-      position: "LLM Project Lead",
+      position: "MakeEat Project Lead",
       duration: "Sep 2024 - Dec 2024",
       location: "Irvine, CA",
       highlights: [
-        "Designed LLM-powered recipe generator improving dietary recommendations by 20%",
+        "Designed MakeEat recipe generator improving dietary recommendations by 20%",
         "Led front-end development and product design",
         "Implemented efficient app architecture reducing development cycles by 25%"
       ]
