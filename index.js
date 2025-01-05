@@ -6,7 +6,11 @@ require('dotenv').config();
 const app = express();
 
 const corsOptions = {
-  origin: ['http://localhost:3000', 'https://www.anubilegdemberel.com'],
+  origin: [
+    'http://localhost:3000',
+    'http://localhost:5001',
+    'https://www.anubilegdemberel.com'
+  ],
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type'],
   credentials: false,
@@ -149,34 +153,20 @@ app.post('/chat', async (req, res) => {
     
     // Enhance the system prompt to enforce structured responses
     const structuredPrompt = `
-Guidelines for responses:
-- Structure all responses with clear headers and sections
-- Format the response in the following way:
-  1. Main Topic Header (##)
-  2. Brief Overview
-  3. Key Details (with subheaders ###)
-  4. Metrics and Achievements (as bullet points)
-  5. Technical Specifications (as numbered lists)
-  
-- Use markdown formatting:
-  * Headers: ## for main sections, ### for subsections
-  * Lists: Use * for features and achievements
-  * Numbers: Use 1. 2. 3. for steps or technical specifications
-  * Metrics: Present in table format
-  * Code: Use single backticks for inline code, triple for code blocks
-  
-- When discussing the Rootin project, include:
-  * Project Overview
-  * Technical Stack
-  * Key Features
-  * Metrics & Impact
-  * Role & Responsibilities
+As a hiring-focused AI assistant, provide concise responses about Anu's:
+- Technical achievements and metrics
+- Project impact and results
+- Problem-solving approach
+- Development expertise
 
-- Keep responses professional and evidence-based
-- Include specific metrics and data points
-- Never include information not listed in the resume data
+Format responses with:
+## Main Topic
+* Key achievement with metrics
+* Technical implementation
+* Business impact
 
-Remember: Rootin (formerly IoT-based plant care system) is a plant care automation project combining Flutter mobile development with IoT hardware integration.
+Keep responses focused on hiring-relevant information.
+Remember: Highlight quantifiable results and technical depth.
 `;
 
     const messages = [
@@ -187,11 +177,18 @@ Remember: Rootin (formerly IoT-based plant care system) is a plant care automati
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages,
-      max_tokens: 500,
+      max_tokens: 150,
       temperature: 0.3,
+      presence_penalty: 0.1,
+      frequency_penalty: 0.1,
     });
 
-    res.json({ reply: completion.choices[0].message.content.trim() });
+    let reply = completion.choices[0].message.content.trim();
+    if (reply.length > 200) {
+      reply = reply.substring(0, 197) + '...';
+    }
+
+    res.json({ reply });
   } catch (error) {
     console.error('Chat error:', error);
     res.status(500).json({ error: error.message });

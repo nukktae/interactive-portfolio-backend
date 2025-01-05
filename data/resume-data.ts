@@ -1,55 +1,53 @@
 const RESUME_DATA = {
   personal: {
     name: "Anu Bilegdemberel",
-    email: "anu.bnda@gmail.com",
-    location: "Irvine, CA",
-    title: "UX Engineering Student",
-    summary: "Motivated software engineering student seeking an internship to apply expertise in Flutter, AWS, and IoT development. Passionate about creating innovative, user-focused applications that make a positive impact."
+    email: "anu.bn@yahoo.com",
+    location: "Irvine, United States",
+    title: "Full Stack Developer",
+    summary: "Dynamic Full Stack Developer with expertise in cross-platform mobile and web application development, delivering innovative solutions to enhance user engagement. Proficient in modern frameworks like Flutter and React, with a strong foundation in backend technologies such as Node.js and PostgreSQL."
   },
   skills: {
-    programming: ["Dart", "Python", "C++", "JavaScript", "HTML/CSS"],
-    cloud: ["AWS Rekognition", "AWS Kinesis", "DynamoDB", "IoT Sensor Integration"],
-    backend: ["PostgreSQL", "Node.js", "REST APIs"],
-    frontend: ["Flutter", "CSS", "HTML", "JavaScript"],
-    design: ["Figma", "Framer", "Procreate"],
-    tools: ["User Personas", "User Journeys"]
+    programming: ["Python", "JavaScript", "TypeScript", "Dart", "React", "Flutter"],
+    cloud: ["AWS Kinesis", "AWS Rekognition", "Firebase"],
+    backend: ["Node.js", "Express", "PostgreSQL", "Firebase"],
+    frontend: ["React", "Flutter", "HTML/CSS"],
+    design: ["UI/UX Design", "Figma"]
   },
   experience: [
     {
-      company: "PBL Program - Kookmin University",
-      position: "Front-end developer & Product designer",
-      duration: "Sep 2024 - Dec 2024",
-      location: "Irvine, CA",
+      company: "Grepp",
+      position: "Full Stack App Development",
+      project: "Rootin",
+      duration: "Sep 2024 - Present",
+      location: "Irvine",
       highlights: [
-        "Developed Rootin, an IoT-based plant care system with iOS app integration",
-        "Integrated Firebase Cloud Messaging (FCM) improving notifications by 30%",
-        "Connected Raspberry Pi with soil moisture sensors, achieving 90% user satisfaction",
-        "Built reusable Flutter widgets with multilingual support",
-        "Optimized API handling reducing development cycles by 30%"
+        "Developed cross-platform mobile application using Flutter/Dart, achieving 95% notification delivery rate",
+        "Implemented MVVM architecture pattern, designed reusable components, and integrated BLE protocol",
+        "Built multi-language support system (EN/KO) and ensured cross-platform support for iOS 14+ and Android 8+"
       ]
     },
     {
-      company: "PBL Program - Kookmin University",
-      position: "Front-end developer & Product designer",
-      duration: "Sep 2024 - Dec 2024",
-      location: "Irvine, CA",
+      company: "Grepp",
+      position: "Full Stack App Development",
+      project: "MakeEat",
+      duration: "Oct 2024 - Dec 2024",
+      location: "Irvine",
       highlights: [
-        "Designed LLM-powered recipe generator improving dietary recommendation accuracy by 20%",
-        "Established foundational workflows as the sole front-end developer",
-        "Designed and implemented efficient app architecture reducing development cycles by 25%",
-        "Designed Figma wireframes collaboratively, boosting workflow efficiency by 15%"
+        "Led end-to-end development using Flutter, integrating AI for personalized recipe generation",
+        "Implemented MVVM architecture with Provider for scalable state management",
+        "Integrated Firebase Authentication and Cloud Firestore for backend"
       ]
     },
     {
-      company: "PBL Program - Kookmin University",
-      position: "AWS Backend Developer",
-      duration: "Sep 2024 - Dec 2024",
-      location: "Irvine, CA",
+      company: "Individual Project",
+      position: "Full Stack Web Development",
+      project: "Major Match",
+      duration: "Nov 2024 - Present",
+      location: "Irvine",
       highlights: [
-        "Designed and deployed real-time content moderation system using AWS Kinesis and Rekognition",
-        "Improved accuracy to 95% and reduced false positives by 20%",
-        "Reduced operational costs by 15% while maintaining scalability",
-        "Engineered real-time moderation pipeline handling peak traffic surges"
+        "Developed AI-powered educational platform for academic major selection",
+        "Built full-stack application using React 18, TypeScript, and Node.js with PostgreSQL",
+        "Implemented secure Firebase authentication with role-based access"
       ]
     }
   ],
