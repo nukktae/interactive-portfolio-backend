@@ -2,9 +2,9 @@ const RESUME_DATA = {
   personal: {
     name: "Anu Bilegdemberel",
     email: "anu.bn@yahoo.com",
-    location: "Irvine, United States",
-    title: "Full Stack Developer",
-    summary: "Dynamic Full Stack Developer with expertise in cross-platform mobile and web application development, delivering innovative solutions to enhance user engagement. Proficient in modern frameworks like Flutter and React, with a strong foundation in backend technologies such as Node.js and PostgreSQL."
+    location: "Torrance, CA",
+    title: "UI/UX Designer & Full Stack Developer",
+    summary: "Creative UI/UX Designer and Full Stack Developer with expertise in designing intuitive user experiences and building cross-platform applications. Currently specializing in frontend development and UX design, with proven experience in mobile apps, web platforms, and AI-driven solutions."
   },
   skills: {
     programming: ["Python", "JavaScript", "TypeScript", "Dart", "React", "Flutter"],
@@ -15,10 +15,21 @@ const RESUME_DATA = {
   },
   experience: [
     {
+      company: "Handiers Inc.",
+      position: "UIUX Designer",
+      duration: "03/2025 ― Present",
+      location: "Torrance, CA",
+      highlights: [
+        "Designed and developed the frontend for two mobile apps and a marketing website, delivering consistent UI across platforms",
+        "Led major UX redesigns (chat, booking, and quote request), enhancing clarity and conversion through data-backed decisions",
+        "Built intuitive, responsive interfaces using Figma and Flutter, collaborating closely with backend devs and the CEO to ship real-time features like camera input and AI estimation"
+      ]
+    },
+    {
       company: "Grepp",
       position: "Full Stack App Development",
       project: "Rootin",
-      duration: "Sep 2024 - Present",
+      duration: "Sep 2024 - Dec 2024",
       location: "Irvine",
       highlights: [
         "Developed cross-platform mobile application using Flutter/Dart, achieving 95% notification delivery rate",

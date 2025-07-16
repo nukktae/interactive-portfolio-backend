@@ -2,9 +2,9 @@ const PORTFOLIO_INFO = {
   personal: {
     name: "Anu Bilegdemberel",
     email: "anu.bnda@gmail.com",
-    location: "Irvine, CA",
-    title: "UX Engineering Student",
-    summary: "Motivated software engineering student seeking an internship to apply expertise in Flutter, AWS, and IoT development. Passionate about creating innovative, user-focused applications that make a positive impact."
+    location: "Torrance, CA",
+    title: "UI/UX Designer & Full Stack Developer",
+    summary: "Creative UI/UX Designer and Full Stack Developer with expertise in designing intuitive user experiences and building cross-platform applications. Currently specializing in frontend development and UX design, with proven experience in mobile apps, web platforms, and AI-driven solutions."
   },
   skills: {
     programming: ["Dart", "Python", "C++", "JavaScript", "HTML/CSS"],
@@ -15,6 +15,17 @@ const PORTFOLIO_INFO = {
     other: ["User Personas", "User Journeys"]
   },
   experience: [
+    {
+      company: "Handiers Inc.",
+      position: "UIUX Designer",
+      duration: "03/2025 ― Present",
+      location: "Torrance, CA",
+      highlights: [
+        "Designed and developed the frontend for two mobile apps and a marketing website, delivering consistent UI across platforms",
+        "Led major UX redesigns (chat, booking, and quote request), enhancing clarity and conversion through data-backed decisions",
+        "Built intuitive, responsive interfaces using Figma and Flutter, collaborating closely with backend devs and the CEO to ship real-time features like camera input and AI estimation"
+      ]
+    },
     {
       company: "PBL Program - Kookmin University",
       position: "Front-end developer & Product designer",

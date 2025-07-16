@@ -17,6 +17,17 @@ const RESUME_DATA = {
   },
   experience: [
     {
+      company: "Handiers Inc.",
+      position: "UIUX Designer",
+      duration: "03/2025 ― Present",
+      location: "Torrance, CA",
+      highlights: [
+        "Designed and developed the frontend for two mobile apps and a marketing website, delivering consistent UI across platforms",
+        "Led major UX redesigns (chat, booking, and quote request), enhancing clarity and conversion through data-backed decisions",
+        "Built intuitive, responsive interfaces using Figma and Flutter, collaborating closely with backend devs and the CEO to ship real-time features like camera input and AI estimation"
+      ]
+    },
+    {
       company: "PBL Program - Kookmin University",
       position: "Front-end developer & Product designer",
       duration: "Sep 2024 - Dec 2024",
