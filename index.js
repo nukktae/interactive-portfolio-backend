@@ -229,22 +229,32 @@ Remember: Highlight quantifiable results and technical depth.
     console.error('Error details:', {
       message: error.message,
       status: error.status,
-      response: error.response?.data
+      statusCode: error.statusCode,
+      response: error.response?.data,
+      errorString: String(error)
     });
     
-    // Better error handling for API key issues
-    if (error.message && (error.message.includes('401') || error.message.includes('organization'))) {
+    // Check for OpenAI API key organization access issues
+    const errorMessage = error.message || String(error) || '';
+    const errorResponse = error.response?.data || {};
+    const errorString = JSON.stringify(errorResponse);
+    
+    if (errorMessage.includes('organization') || errorString.includes('organization') || 
+        errorMessage.includes('401') || error.statusCode === 401 || error.status === 401) {
       console.error('OpenAI API Key Error - Organization access issue');
       res.status(500).json({ 
-        error: 'OpenAI API key configuration error. If using an organization key, ensure proper access permissions or use a personal API key instead.' 
+        error: 'OpenAI API key error: The API key is tied to an organization you don\'t have access to. Please use a personal API key instead. You can create one at https://platform.openai.com/api-keys' 
       });
-    } else if (error.message && error.message.includes('401')) {
+    } else if (errorMessage.includes('401') || error.statusCode === 401 || error.status === 401) {
       console.error('OpenAI API Key Error - Authentication failed');
       res.status(500).json({ 
         error: 'OpenAI API authentication failed. Please verify the API key is correct and has proper permissions.' 
       });
     } else {
-      res.status(500).json({ error: error.message || 'Internal server error' });
+      res.status(500).json({ 
+        error: error.message || errorString || 'Internal server error',
+        details: process.env.NODE_ENV === 'development' ? error.stack : undefined
+      });
     }
   }
 });
