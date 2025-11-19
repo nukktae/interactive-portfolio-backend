@@ -9,7 +9,8 @@ const corsOptions = {
   origin: [
     'http://localhost:3000',
     'http://localhost:5001',
-    'https://www.anubilegdemberel.com'
+    'https://www.anubilegdemberel.com',
+    'https://anubilegdemberel.com'
   ],
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type'],
@@ -24,6 +25,11 @@ app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
 
 app.use(express.json());
+
+// Check if API key is set
+if (!process.env.OPENAI_API_KEY) {
+  console.error('⚠️  WARNING: OPENAI_API_KEY is not set in environment variables!');
+}
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -149,7 +155,19 @@ app.get('/', (req, res) => {
 
 app.post('/chat', async (req, res) => {
   try {
+    // Check if API key is set
+    if (!process.env.OPENAI_API_KEY) {
+      console.error('OPENAI_API_KEY is not set');
+      return res.status(500).json({ 
+        error: 'OpenAI API key is not configured. Please set OPENAI_API_KEY environment variable.' 
+      });
+    }
+
     const { message } = req.body;
+    
+    if (!message || !message.trim()) {
+      return res.status(400).json({ error: 'Message is required' });
+    }
     
     // Enhance the system prompt to enforce structured responses
     const structuredPrompt = `
@@ -191,7 +209,26 @@ Remember: Highlight quantifiable results and technical depth.
     res.json({ reply });
   } catch (error) {
     console.error('Chat error:', error);
-    res.status(500).json({ error: error.message });
+    console.error('Error details:', {
+      message: error.message,
+      status: error.status,
+      response: error.response?.data
+    });
+    
+    // Better error handling for API key issues
+    if (error.message && (error.message.includes('401') || error.message.includes('organization'))) {
+      console.error('OpenAI API Key Error - Organization access issue');
+      res.status(500).json({ 
+        error: 'OpenAI API key configuration error. If using an organization key, ensure proper access permissions or use a personal API key instead.' 
+      });
+    } else if (error.message && error.message.includes('401')) {
+      console.error('OpenAI API Key Error - Authentication failed');
+      res.status(500).json({ 
+        error: 'OpenAI API authentication failed. Please verify the API key is correct and has proper permissions.' 
+      });
+    } else {
+      res.status(500).json({ error: error.message || 'Internal server error' });
+    }
   }
 });
 
@@ -201,12 +238,17 @@ app.listen(PORT, () => {
 });
 
 console.log('\n=== SERVER STARTUP CHECKS ===');
-console.log('1. RESUME_DATA loaded:', {
+console.log('1. OPENAI_API_KEY status:', {
+  isSet: !!process.env.OPENAI_API_KEY,
+  keyLength: process.env.OPENAI_API_KEY ? process.env.OPENAI_API_KEY.length : 0,
+  keyPrefix: process.env.OPENAI_API_KEY ? process.env.OPENAI_API_KEY.substring(0, 7) : 'NOT SET'
+});
+console.log('2. RESUME_DATA loaded:', {
   isLoaded: !!RESUME_DATA,
   hasExperience: !!RESUME_DATA?.experience,
   firstProjectHighlight: RESUME_DATA?.experience?.[0]?.highlights?.[0]
 });
-console.log('2. System Prompt contains project info:', {
+console.log('3. System Prompt contains project info:', {
   length: SYSTEM_PROMPT.length,
   containsRootin: SYSTEM_PROMPT.includes('Rootin'),
   containsIoT: SYSTEM_PROMPT.includes('IoT-based plant care system')
