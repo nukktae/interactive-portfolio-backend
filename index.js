@@ -239,7 +239,14 @@ Remember: Highlight quantifiable results and technical depth.
     const errorResponse = error.response?.data || {};
     const errorString = JSON.stringify(errorResponse);
     
-    if (errorMessage.includes('organization') || errorString.includes('organization') || 
+    // Check for quota/billing errors (429)
+    if (errorMessage.includes('429') || errorMessage.includes('quota') || errorMessage.includes('exceeded') ||
+        error.statusCode === 429 || error.status === 429) {
+      console.error('OpenAI API Error - Quota exceeded');
+      res.status(503).json({ 
+        error: 'The AI chat service is temporarily unavailable due to API quota limits. Please check your OpenAI account billing and quota settings at https://platform.openai.com/account/billing' 
+      });
+    } else if (errorMessage.includes('organization') || errorString.includes('organization') || 
         errorMessage.includes('401') || error.statusCode === 401 || error.status === 401) {
       console.error('OpenAI API Key Error - Organization access issue');
       res.status(500).json({ 
