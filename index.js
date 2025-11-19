@@ -252,8 +252,8 @@ Remember: Highlight quantifiable results and technical depth.
 // Export for Vercel serverless functions
 module.exports = app;
 
-// Only start server if not in serverless environment
-if (process.env.VERCEL !== '1') {
+// Only start server if running locally (not in Vercel serverless environment)
+if (!process.env.VERCEL && !process.env.VERCEL_ENV) {
   const PORT = process.env.PORT || 5001;
   app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
