@@ -1,7 +1,7 @@
 const PORTFOLIO_INFO = {
   personal: {
     name: "Anu Bilegdemberel",
-    email: "anu.bnda@gmail.com",
+    email: "anu.bn@yahoo.com",
     location: "Torrance, CA",
     title: "UI/UX Designer & Full Stack Developer",
     summary: "Creative UI/UX Designer and Full Stack Developer with expertise in designing intuitive user experiences and building cross-platform applications. Currently specializing in frontend development and UX design, with proven experience in mobile apps, web platforms, and AI-driven solutions."

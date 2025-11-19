@@ -2,7 +2,7 @@ const RESUME_DATA = {
   // Using the same data as PORTFOLIO_INFO
   personal: {
     name: "Anu Bilegdemberel",
-    email: "anu.bnda@gmail.com",
+    email: "anu.bn@yahoo.com",
     location: "Irvine, CA",
     title: "UX Engineering Student",
     summary: "Motivated software engineering student seeking an internship to apply expertise in Flutter, AWS, and IoT development. Passionate about creating innovative, user-focused applications that make a positive impact."
