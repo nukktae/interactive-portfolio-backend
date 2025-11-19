@@ -249,10 +249,16 @@ Remember: Highlight quantifiable results and technical depth.
   }
 });
 
-const PORT = process.env.PORT || 5001;
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+// Export for Vercel serverless functions
+module.exports = app;
+
+// Only start server if not in serverless environment
+if (process.env.VERCEL !== '1') {
+  const PORT = process.env.PORT || 5001;
+  app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+  });
+}
 
 console.log('\n=== SERVER STARTUP CHECKS ===');
 console.log('1. OPENAI_API_KEY status:', {
