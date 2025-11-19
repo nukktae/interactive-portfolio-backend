@@ -29,6 +29,8 @@ app.use(express.json());
 // Check if API key is set
 if (!process.env.OPENAI_API_KEY) {
   console.error('⚠️  WARNING: OPENAI_API_KEY is not set in environment variables!');
+} else {
+  console.log('✅ OPENAI_API_KEY is set (length:', process.env.OPENAI_API_KEY.length, ')');
 }
 
 const openai = new OpenAI({
@@ -150,7 +152,22 @@ app.use((err, req, res, next) => {
 });
 
 app.get('/', (req, res) => {
-  res.json({ message: 'Portfolio API is running' });
+  res.json({ 
+    message: 'Portfolio API is running',
+    apiKeySet: !!process.env.OPENAI_API_KEY,
+    apiKeyLength: process.env.OPENAI_API_KEY ? process.env.OPENAI_API_KEY.length : 0
+  });
+});
+
+// Health check endpoint to verify API key
+app.get('/health', (req, res) => {
+  const hasApiKey = !!process.env.OPENAI_API_KEY;
+  res.json({
+    status: 'ok',
+    apiKeyConfigured: hasApiKey,
+    apiKeyPrefix: hasApiKey ? process.env.OPENAI_API_KEY.substring(0, 7) : 'NOT SET',
+    timestamp: new Date().toISOString()
+  });
 });
 
 app.post('/chat', async (req, res) => {
